@@ -1,0 +1,32 @@
+{
+  "name": "cricket_scoreboard",
+  "version": "1.0.0",
+  "description": "Cricket scoreboard implementation",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm install && node src/index.js",
+    "lint": "eslint src/ --ext .js --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maranranu/cricket_scoreboard.git"
+  },
+  "author": "Kamnee Maran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maranranu/cricket_scoreboard/issues"
+  },
+  "homepage": "https://github.com/maranranu/cricket_scoreboard#readme",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "readline": "^1.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0"
+  }
+}
