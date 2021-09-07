@@ -10,6 +10,8 @@ module.exports = {
   },
   ACTION: {
     OUT: 'W',
-    WIDE: 'Wd'
+    WIDE: 'Wd',
+    RUN_OUT: 'Ro',
+    NO_BALL: 'Nb'
   }
 };

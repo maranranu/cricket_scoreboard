@@ -1,4 +1,4 @@
-const { PLAYER_STATUS, PLAYER_TYPE } = require('../constants');
+const { PLAYER_STATUS, PLAYER_TYPE, ACTION} = require('../constants');
 
 class Player {
   constructor (name, type) {
@@ -18,11 +18,10 @@ class Player {
     this.status = PLAYER_STATUS.NOT_GETTING_CHANCE_TO_BAT;
   }
 
-  set_batsman (run) {
+  set_batsman (run, run_type) {
     this.runs += (!isNaN(run) ? parseInt(run) : 0);
     this.balls_faced += 1;
     this.status = PLAYER_STATUS.PLAYING;
-
     this.strike_rate = (this.runs / this.balls_faced) * 100;
 
     if (run == 4) {
@@ -31,7 +30,7 @@ class Player {
       this.sixes += 1;
     } else if (run == 0) {
       this.maiden += 1;
-    } else if (run == 'W') {
+    } else if (run == ACTION.OUT || run_type == ACTION.RUN_OUT) {
       this.player_out();
     }
   }

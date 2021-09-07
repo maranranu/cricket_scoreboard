@@ -28,8 +28,17 @@ class Game {
 
   play (team_no, run) {
     const team = this._teams[team_no];
-    team.set_run(run);
-    team.next_batsman(run);
+
+    let run_type = '';
+    if (run.indexOf(ACTION.RUN_OUT) > -1) {
+      let run_types = run.split(' ');
+      run_type = run_types[0];
+      run = run_types[1];
+    }
+
+    team.set_run(run, run_type);
+
+    team.next_batsman(run, run_type);
     if (run != ACTION.WIDE) {
       this._balls += 1;
     }

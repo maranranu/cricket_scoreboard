@@ -29,12 +29,31 @@ class Team {
     this._current_batsmans[this._index] = this._batsmans[next_player_to_pick];
   }
 
-  next_batsman (run) {
-    if (run === ACTION.OUT) {
-      this._update_current_players();
-      this.wickets += 1;
-    } else if (run % 2 === 1 || this.balls_played === 6) {
+  _choose_current(run) {
+    if (run % 2 === 1 || this.balls_played === 6) {
       this._index = (!this._index) | 0;
+    }
+  }
+
+  _last_ball () {
+    if (this.balls_played === 6) {
+      this._index = (!this._index) | 0;
+    }
+  }
+
+  _team_player_out () {
+    this._update_current_players();
+    this.wickets += 1;
+  }
+
+  next_batsman (run, type) {
+    if (run === ACTION.OUT) {
+      this._team_player_out()
+    } else {
+      this._choose_current(run);
+      if (type && type === ACTION.RUN_OUT) {
+        this._team_player_out();
+      }
     }
   }
 
@@ -46,14 +65,14 @@ class Team {
     }
   }
 
-  set_run (run) {
+  set_run (run, run_type) {
     const player = this._current_batsmans[this._index];
-    if (run === ACTION.WIDE) {
+    if (run === ACTION.WIDE || run === ACTION.NO_BALL) {
       this.extras += 1;
       this.team_runs += 1;
       this.balls_played -= 1;
     } else {
-      this._players[player].set_batsman(run);
+      this._players[player].set_batsman(run, run_type);
     }
     this.balls_played += 1;
     this.team_runs += (!isNaN(run) ? parseInt(run) : 0);

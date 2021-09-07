@@ -8,7 +8,7 @@ async function startGameForTeam (gameObj, obj) {
     console.log('Over: ', over + 1);
     for (let bowl = 0; bowl < 6; bowl++) {
       const run = await interactiveMode(`Run on bowl ${bowl}: `);
-      if (run === 'Wd') { bowl -= 1; }
+      if (run === 'Wd' || run === 'Nb') { bowl -= 1; }
       gameObj.bowl(run);
       if (gameObj.game_ends()) {
         break;
